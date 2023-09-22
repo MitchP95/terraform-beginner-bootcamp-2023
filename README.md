@@ -20,15 +20,11 @@ The install script is called from [.gitpod.yml](.gitpod.yml) on environment laun
 
 ## Linux Distribution
 
-Project runs in Ubuntu 22.04
-
-[Check OS version](https://www.cyberciti.biz/faq/how-to-check-os-version-in-linux-command-line/)
+Project runs in Ubuntu 22.04 - [Check your OS version](https://www.cyberciti.biz/faq/how-to-check-os-version-in-linux-command-line/)
 
 ## Shebang
 
-Is leveraged in scripts to inform the OS which script interpreter to use while evaluating the script.
-
-[Shebang Details](https://bash.cyberciti.biz/guide/Shebang)
+Is leveraged in scripts to inform the OS which script interpreter to use while evaluating the script. [Shebang Details](https://bash.cyberciti.biz/guide/Shebang)
 
 ## File Permissions
 
