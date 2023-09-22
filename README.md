@@ -8,10 +8,14 @@ This project uses the following semantic version: X.Y.Z, where:
 
 ## Environment Setup
 
-https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+The Terraform CLI installation instructions changed prior to the bootcamp - the most updated instructions were pulled from here:
+
+[Install Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
 
 ## Resources
 
+https://www.gitpod.io/docs/configure/workspaces/tasks
+https://www.cyberciti.biz/faq/how-to-check-os-version-in-linux-command-line/
 https://bash.cyberciti.biz/guide/Shebang
 https://linuxize.com/post/chmod-command-in-linux/
