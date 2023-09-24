@@ -37,3 +37,50 @@ Linux file permissions and details on using Chmod can be found [here](https://li
 ```sh
 chmod u+x /bin/install_terraform_cli
 ```
+
+### Utilization of Environment Variables
+
+- List with env command, filter with grep:
+```sh
+env | grep VAR
+```
+
+- Set with 
+```sh
+export VAR='value'
+```
+
+- Unset with
+```sh
+unset VAR
+```
+
+- Set variables for scripts with:
+
+```sh
+VAR='value' ./bin/script
+```
+
+- Set without export in bash script:
+
+```sh
+#!/usr/bin/env bash
+
+VAR='value'
+```
+
+### Printing and referencing
+
+Print or reference using `$`, like `echo $VAR`
+
+### Scope of Env Vars
+
+Environment variables will not be available between separate terminals, the are scoped to the terminal they are assinged in unless set at a global scope.
+
+### Env Vars in Gitpod
+
+Setting env vars in gitpod will make the env var globally available each time the environment is launched.
+
+```sh
+gp env VAR='value'
+```
