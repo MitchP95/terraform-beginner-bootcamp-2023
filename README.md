@@ -96,3 +96,7 @@ Credentials can be checked with the following command:
 ```sh
 aws sts get-caller-identity
 ```
+
+### AWS Credentials
+
+AWS credentials listed in the .env.example file are **required** to run portions of the project, and should be set as part o the environment setup, or as needed depending on use cases.
