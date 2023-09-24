@@ -1,10 +1,12 @@
 # Terraform Beginner Bootcamp 2023
 
 ## Semantic Versioning
+
 This project uses the following semantic version: X.Y.Z, where:
-- X is a major version number marking major releases
-- Y is a minor version number marking changes that are backwards compatible
-- Z is small fixes and patches
+
+-   X is a major version number marking major releases
+-   Y is a minor version number marking changes that are backwards compatible
+-   Z is small fixes and patches
 
 ## Environment Setup
 
@@ -40,28 +42,31 @@ chmod u+x /bin/install_terraform_cli
 
 ### Utilization of Environment Variables
 
-- List with env command, filter with grep:
+-   List with env command, filter with grep:
+
 ```sh
 env | grep VAR
 ```
 
-- Set with 
+-   Set with
+
 ```sh
 export VAR='value'
 ```
 
-- Unset with
+-   Unset with
+
 ```sh
 unset VAR
 ```
 
-- Set variables for scripts with:
+-   Set variables for scripts with:
 
 ```sh
 VAR='value' ./bin/script
 ```
 
-- Set without export in bash script:
+-   Set without export in bash script:
 
 ```sh
 #!/usr/bin/env bash
@@ -84,3 +89,29 @@ Setting env vars in gitpod will make the env var globally available each time th
 ```sh
 gp env VAR='value'
 ```
+
+### AWS CLI Installation
+
+AWS CLI is installed to facilitate interactions with the cloud provider via: [./bin/install_aws_cli](./bin/install_aws_cli)
+
+[Getting started with AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+
+Credentials can be checked with the following command:
+
+```sh
+aws sts get-caller-identity
+```
+
+The structure of the return will look something like this:
+
+```
+{
+    "UserId": "AAAAAAAAAAAAAAAAAAAAA",
+    "Account": "111111111111111",
+    "Arn": "arn:aws:iam::1111111111111111:user/Username"
+}
+```
+
+### AWS Credentials
+
+AWS credentials listed in the .env.example file are **required** to run portions of the project, and should be set as part o the environment setup, or as needed depending on use cases.
