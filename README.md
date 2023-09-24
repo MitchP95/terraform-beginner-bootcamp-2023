@@ -84,3 +84,15 @@ Setting env vars in gitpod will make the env var globally available each time th
 ```sh
 gp env VAR='value'
 ```
+
+### AWS CLI Installation
+
+AWS CLI is installed to facilitate interactions with the cloud provider via: [./bin/install_aws_cli](./bin/install_aws_cli)
+
+[Getting started with AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+
+Credentials can be checked with the following command:
+
+```sh
+aws sts get-caller-identity
+```
