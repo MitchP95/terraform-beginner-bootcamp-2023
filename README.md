@@ -115,3 +115,49 @@ The structure of the return will look something like this:
 ### AWS Credentials
 
 AWS credentials listed in the .env.example file are **required** to run portions of the project, and should be set as part o the environment setup, or as needed depending on use cases.
+
+
+## Terraform Basics
+
+### Terraform Registry
+
+Terraform sources their provider and modules from a terraform dedicaated registry located at [registry.terraform.io](https://registry.terraform.io/)
+
+- **Providers** are interfaces to to cloud service providers and their APIs allowing terraform its flexibility
+- **Modules** are exportable and leveragable blocks of modular terraform code that can be ported and shared
+
+[Random Terraform Provider](https://registry.terraform.io/providers/hashicorp/random/latest)
+
+### Terraform CLI
+
+See all commands with `terraform`
+
+### Initialization
+
+At the start of a new terraform project you can run `terraform init` which will download the required binary files for the terraform providers used in the project.
+
+### Terraform Plan
+
+This command `terraform plan` will generate a changest about the infrastructure state to be modified.
+
+You can output the change set to be passed to an apple, but this outputting is often ignored.
+
+### Terraform Apply
+
+`terraform apply`
+
+This will run a plan and pass the generate changeset to be executed by terraform. Apply should prompt a yes or no from the user.
+
+If you want to automatically approve an apply you can pass the auto approve flag: `terraform apply --auto-approve`
+
+### Lockfiles
+
+`.terraform.lock.hcl` contains the locked versioning for providers and modules that should be used with the project. The lockfile should be commited to the repo as typical for lockfiles to enforce consistence version control.
+
+### State Files
+
+`.terraform.tfstate` contains info about the current state of the infrastructure. This is a generated file and should be regenerated rather than being modified by hand. This file **should not** be tracked via git - it may contain sensitive data.
+
+### Terraform Directory
+
+`.terraform` directory ccontains binaries of terraform providers.
