@@ -167,3 +167,17 @@ This will destroy resources that have been deployed. The auto-approve flag also 
 ### Terraform Directory
 
 `.terraform` directory ccontains binaries of terraform providers.
+
+## AWS Resources
+
+### S3 Buckets
+
+Holds binary blobs and files. Can be created with the following structure in terraform: 
+
+```sh
+resource "aws_s3_bucket" "example" {
+    bucket = "uniquename"
+}
+```
+
+There are very specific [naming conventions for S3 buckets that should be followed.](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html)
