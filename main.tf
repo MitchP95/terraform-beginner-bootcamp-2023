@@ -1,4 +1,11 @@
 terraform {
+    cloud {
+        organization = "mpuersten-bootcamp"
+
+        workspaces {
+            name = "terra-house-mp"
+        }
+    }
     required_providers {
         aws = {
             source = "hashicorp/aws"

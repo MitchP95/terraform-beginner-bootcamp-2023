@@ -181,3 +181,13 @@ resource "aws_s3_bucket" "example" {
 ```
 
 There are very specific [naming conventions for S3 buckets that should be followed.](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html)
+
+## Troubleshooting
+
+This section details various issues and troubleshooting workflows that were experienced during the bootcamp.
+
+### Terraform cloud and Gitpod
+
+The Terraform Login command `terraform login` command is blank, and counter intuitive. Since Gitpod blocks paste action it can be easy to make a mistake during this step, so you should ensure you allow pasting and paste with a right mosue click instead of keyboard shotcuts to avoid issues.
+
+To acquire your access token after running `terraform login` you need to press `P` to 'print' the token, then access the webpage by holding Ctrl and clicking the link. 
