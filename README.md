@@ -150,7 +150,13 @@ This will run a plan and pass the generate changeset to be executed by terraform
 
 If you want to automatically approve an apply you can pass the auto approve flag: `terraform apply --auto-approve`
 
-### Lockfiles
+### Terraform Destroy
+
+`terraform destroy`
+
+This will destroy resources that have been deployed. The auto-approve flag also works on this command.
+
+### Terraform Lockfiles
 
 `.terraform.lock.hcl` contains the locked versioning for providers and modules that should be used with the project. The lockfile should be commited to the repo as typical for lockfiles to enforce consistence version control.
 
