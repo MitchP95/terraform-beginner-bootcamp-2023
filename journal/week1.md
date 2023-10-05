@@ -116,3 +116,39 @@ terraform import aws_s3_bucket.bucket bucket-name
 ### Fix manual configuration
 
 `terraform plan` can be leveraged to return infrastructure back to the expected state if the infrastructure has been modified manually via the console or cli.
+
+## Fix using Terraform refresh
+
+```sh
+terraform apply -refresh-only -auto-approve
+```
+
+## Terraform Modules
+
+### Terraform Module Structure
+
+Modules should be placed in a `modules` directory when doing local Terraform development, but the name can vary.
+
+### Passing inp
+
+Best practice is to pass input variables to modules.
+The module must declar terraform variables in it's associated variables.tf
+
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.user_uuid
+  bucket_name = var.bucket_name
+}
+```
+
+### Module Sources
+
+Using the source we can import modules from:
+- local environment
+- github
+- Terraform registry
+
+
+
+[Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
