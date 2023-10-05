@@ -91,3 +91,28 @@ The order in which Terraform loads variable values is important, especially if y
 - Individual var flags: -var flags on the command line, in the order they appear.
 
 Each level has a higher precedence than the previous one. This means if the same variable is defined in multiple places, the last value loaded based on the order mentioned above will take precedence.
+
+
+## Dealing with Config Drift
+
+### Loss of state file
+
+Losing the state file means you likely need to tear down cloud infrastructure manually.
+
+You can use the `terraform port` command but this may not work for all cloud resources. This will be indicated in terraform provider documentation.
+
+### Fixing missing resources with Terraform import
+
+You can leverage this command to pull resource states back to the tfstate file. This works so far with S3 buckets:
+
+```sh
+terraform import aws_s3_bucket.bucket bucket-name
+```
+
+[Terraform Import](https://developer.hashicorp.com/terraform/cli/import)
+
+[AWS S3 Bucket Import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+
+### Fix manual configuration
+
+`terraform plan` can be leveraged to return infrastructure back to the expected state if the infrastructure has been modified manually via the console or cli.
