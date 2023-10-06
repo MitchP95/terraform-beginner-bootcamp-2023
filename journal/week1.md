@@ -149,6 +149,9 @@ Using the source we can import modules from:
 - github
 - Terraform registry
 
-
-
 [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
+
+
+## Considerations for using ChatGPT with Terraform
+
+Since LLMs are not trained on the most frequent releases they can produce errors or outdated items when generating terraform code. Documentation released from terraform and other cloud providers directly will always be more correct.
