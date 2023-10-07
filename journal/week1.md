@@ -226,3 +226,13 @@ This can be used to create a json policy, which can be used with AWS, inline in 
 ```
 
 [jsonencode](https://developer.hashicorp.com/terraform/language/functions/jsonencode)
+
+## Resource Lifecycle
+
+[Meta Arguments Lifcycle](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle)
+
+## Terraform Data
+
+This assists with generating side-effects to plan against. 'Plain Values' don't typically produce these side effects, so the injection of a content version or similar value can assist. This allows us to upload our html files only if the content version has changed.
+
+[Terraform Data](https://developer.hashicorp.com/terraform/language/resources/terraform-data)
