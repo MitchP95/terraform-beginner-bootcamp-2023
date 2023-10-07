@@ -199,3 +199,30 @@ resource "aws_s3_object" "index_html" {
 To delete locally use `git tag -d <TAG_NAM>`
 
 To delete remotely use `git push --delete origin <TAG_NAME>`
+
+## Terraform Locals
+
+### Terraform Data Sources
+
+Enabled the user to leverage source data located in cloud resources. This allows the user to reference their cloud resources without importing them.
+
+```tf
+data "aws_caller_identity" "current" {}
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
+```
+
+[Data Sources Documentation](https://developer.hashicorp.com/terraform/language/data-sources)
+
+## Using JSON
+
+This can be used to create a json policy, which can be used with AWS, inline in HCL.
+
+```tf
+> jsonencode({"hello"="world"})
+{"hello":"world"}
+```
+
+[jsonencode](https://developer.hashicorp.com/terraform/language/functions/jsonencode)
