@@ -191,3 +191,11 @@ resource "aws_s3_object" "index_html" {
   source = "${path.root}/public/index.html"
 }
 ```
+
+## Tags
+
+### Deleteing Tags 
+
+To delete locally use `git tag -d <TAG_NAM>`
+
+To delete remotely use `git push --delete origin <TAG_NAME>`
