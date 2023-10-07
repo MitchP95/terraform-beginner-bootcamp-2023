@@ -236,3 +236,55 @@ This can be used to create a json policy, which can be used with AWS, inline in 
 This assists with generating side-effects to plan against. 'Plain Values' don't typically produce these side effects, so the injection of a content version or similar value can assist. This allows us to upload our html files only if the content version has changed.
 
 [Terraform Data](https://developer.hashicorp.com/terraform/language/resources/terraform-data)
+
+## Provisioners
+
+Allows the user to execute command on compute instance (like AWS CLI commands)
+
+These are not recommended by hasicorp since Config Management tools (Ansible, etc) are better tools.
+
+[Provisioners](https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax)
+
+### Local-exec
+
+This executes a command on the machine running the terraform commands (plan, apply, etc)
+
+```tf
+resource "aws_instance" "web" {
+  # ...
+
+  provisioner "local-exec" {
+    command = "echo The server's IP address is ${self.private_ip}"
+  }
+}
+```
+
+[More on local-exec](https://developer.hashicorp.com/terraform/language/resources/provisioners/local-exec)
+
+### Remote-exec
+
+This executes command on a targeted machine. This can be done via ssh by specifying credentials to satisfy authentication.
+
+```tf
+resource "aws_instance" "web" {
+  # ...
+
+  # Establishes connection to be used by all
+  # generic remote provisioners (i.e. file/remote-exec)
+  connection {
+    type     = "ssh"
+    user     = "root"
+    password = var.root_password
+    host     = self.public_ip
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "puppet apply",
+      "consul join ${aws_instance.web.private_ip}",
+    ]
+  }
+}
+```
+
+[More on remote-exec](https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec)
