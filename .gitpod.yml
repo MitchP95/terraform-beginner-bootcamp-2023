@@ -13,7 +13,17 @@ tasks:
       source ./bin/set_tf_alias
       source ~/.bash_profile
       source ./bin/install_aws_cli
+  - name: http-server
+    before: |
+      cd $PROJECT_ROOT
+      npm install --global http-server
+    command: 
+      http-server
+  
 vscode:
   extensions:
     - amazonwebservices.aws-toolkit-vscode
     - hashicorp.terraform
+    - phil294.git-log--graph
+    - mhutchie.git-graph
+    - phil294.git-log--graph
