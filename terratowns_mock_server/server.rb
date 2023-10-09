@@ -3,22 +3,50 @@ require 'json'
 require 'pry'
 require 'active_model'
 
+
+# Mock having a state or database for the dev server by setting global variable
+# This is not standard practice in a production server
 $home = {}
 
+# Ruby class the includes validations from ActiveRecord
+# Represents our home resources as a ruby object
 class Home
+  # ActiveModel is native to Ruby and Rails (used as an ORM)
+  # A contained module provides the validations
+  # Production Terratowns server is rails and leverages a similar system
+  # https://guides.rubyonrails.org/active_model_basics.html
+  # https://guides.rubyonrails.org/active_record_validations.html
   include ActiveModel::Validations
+
+  # Create virtual attributes to store on this object
+  # eg. 
+  # home = new Home()
+  # home.town = 'hello' # setter
+  # home.town() # getter
   attr_accessor :town, :name, :description, :domain_name, :content_version
 
-  validates :town, presence: true
+  validates :town, presence: true, inclusion: { in: [
+    'melomaniac-mansion',
+    'cooker-cove',
+    'video-valley',
+    'the-nomad-pad',
+    'gamers-grotto'
+  ] }
+
+  # Full visibility to all users
   validates :name, presence: true
   validates :description, presence: true
+
+  # Locked to only be from cloudfront
   validates :domain_name, 
     format: { with: /\.cloudfront\.net\z/, message: "domain must be from .cloudfront.net" }
     # uniqueness: true, 
 
+  # Must be an integer
   validates :content_version, numericality: { only_integer: true }
 end
 
+# Extension of class from Sinatra base, allows us to utilize the sinatra web framework
 class TerraTownsMockServer < Sinatra::Base
 
   def error code, message
@@ -40,15 +68,17 @@ class TerraTownsMockServer < Sinatra::Base
   end
 
   def x_access_code
-    '9b49b3fb-b8e9-483c-b703-97ba88eef8e0'
+    return '9b49b3fb-b8e9-483c-b703-97ba88eef8e0'
   end
 
   def x_user_uuid
-    'e328f4ab-b99f-421c-84c9-4ccea042c7d1'
+    return 'e328f4ab-b99f-421c-84c9-4ccea042c7d1'
   end
 
   def find_user_by_bearer_token
+    # https://swagger.io/docs/specification/authentication/bearer-authentication/
     auth_header = request.env["HTTP_AUTHORIZATION"]
+    # throw an error if the token is blank or missing
     if auth_header.nil? || !auth_header.start_with?("Bearer ")
       error 401, "a1000 Failed to authenicate, bearer token invalid and/or teacherseat_user_uuid invalid"
     end
@@ -62,6 +92,7 @@ class TerraTownsMockServer < Sinatra::Base
       error 401, "a1002 Failed to authenicate, bearer token invalid and/or teacherseat_user_uuid invalid"
     end
 
+    # Find user by access code
     unless code == x_access_code && params['user_uuid'] == x_user_uuid
       error 401, "a1003 Failed to authenicate, bearer token invalid and/or teacherseat_user_uuid invalid"
     end
@@ -74,6 +105,7 @@ class TerraTownsMockServer < Sinatra::Base
     puts "# create - POST /api/homes"
 
     begin
+      # Sinatra does not automatically parse json bodies, so use JSON.parse
       payload = JSON.parse(request.body.read)
     rescue JSON::ParserError
       halt 422, "Malformed JSON"
@@ -92,6 +124,7 @@ class TerraTownsMockServer < Sinatra::Base
     puts "content_version #{content_version}"
     puts "town #{town}"
 
+    # Create home object
     home = Home.new
     home.town = town
     home.name = name
@@ -105,6 +138,8 @@ class TerraTownsMockServer < Sinatra::Base
 
     uuid = SecureRandom.uuid
     puts "uuid #{uuid}"
+
+    # Mock database - save data
     $home = {
       uuid: uuid,
       name: name,
@@ -126,6 +161,7 @@ class TerraTownsMockServer < Sinatra::Base
     # checks for house limit
 
     content_type :json
+    # ensures uuid matches home object's
     if params[:uuid] == $home[:uuid]
       return $home.to_json
     else
