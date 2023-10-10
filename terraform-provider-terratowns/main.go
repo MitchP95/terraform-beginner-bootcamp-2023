@@ -3,21 +3,21 @@ package main
 
 // fmt is format (formatted IO operations)
 import (
-	"bytes"
-	"context"
-	"encoding/json"
-	"net/http"
-	"log"
+	// "bytes"
+	// "context"
+	// "encoding/json"
+	// "net/http"
+	// "log"
 	"fmt"
-	"github.com/google/uuid"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
+	// "github.com/google/uuid"
+	// "github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 )
 
 func main() {
 	plugin.Serve(&plugin.ServeOpts{
-		ProviderFunc: Provider
+		ProviderFunc: Provider,
 	})
 	
 	fmt.Println("Hello, world!")
@@ -28,7 +28,7 @@ func Provider() *schema.Provider {
 	var p *schema.Provider
 	p = &schema.Provider {
 		ResourcesMap:  map[string]*schema.Resource{
-			"terratowns_home": Resource(),
+			// "terratowns_home": Resource(),
 		},
 		DataSourcesMap:  map[string]*schema.Resource{
 			
@@ -49,21 +49,21 @@ func Provider() *schema.Provider {
 				Type: schema.TypeString,
 				Required: true,
 				Description: "UUID for configuration",
-				ValidateFunc: validateUUID,
+				// ValidateFunc: validateUUID,
 			},
 		},
 	}
 	
-	p.ConfigureContextFunc = providerConfigure(p)
+	// p.ConfigureContextFunc = providerConfigure(p)
 	return p
 }
 
-func validateUUID(v interface{}, k string) (ws []string, errors []error) {
-	log.Print("validateUUID:start")
-	value := v.(string)
-	if _, err := uuid.Parse(value); err != nil {
-		errors = append(errors, fmt.Errorf("invalid UUID format"))
-	}
-	log.Print("validateUUID:end")
-	return
-}
+// func validateUUID(v interface{}, k string) (ws []string, errors []error) {
+// 	log.Print("validateUUID:start")
+// 	value := v.(string)
+// 	if _, err := uuid.Parse(value); err != nil {
+// 		errors = append(errors, fmt.Errorf("invalid UUID format"))
+// 	}
+// 	log.Print("validateUUID:end")
+// 	return
+// }
