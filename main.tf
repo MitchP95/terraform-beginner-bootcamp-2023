@@ -39,6 +39,6 @@ act as a launch station for future space missions. Learn more here.
 DESCRIPTION
   #domain_name = module.terrahouse_aws.cloudfront_url
   domain_name = "3fdq3gz.cloudfront.net"
-  town = "space-grotto"
+  town = "gamers-grotto"
   content_version = 1
 }
