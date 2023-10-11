@@ -94,6 +94,33 @@ func Resource() *schema.Resource {
 		ReadContext: resourceHouseRead,
 		UpdateContext: resourceHouseUpdate,
 		DeleteContext: resourceHouseDelete,
+		Schema: map[string]*schema.Schema{
+			"name": {
+				Type: schema.TypeString,
+				Required: true,
+				Description: "Home name",
+			},
+			"description": {
+				Type: schema.TypeString,
+				Required: true,
+				Description: "Home description",
+			},
+			"domain_name": {
+				Type: schema.TypeString,
+				Required: true,
+				Description: "Domain name of home",
+			},
+			"town": {
+				Type: schema.TypeString,
+				Required: true,
+				Description: "The town the hmoe resides in",
+			},
+			"content_version": {
+				Type: schema.TypeInt,
+				Required: true,
+				Description: "The content version",
+			},
+		},
 	}
 	log.Print("Resource:start")
 	return resource
