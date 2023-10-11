@@ -29,3 +29,16 @@ provider "terratowns" {
 #     content_version = var.content_version
 #     assets_path = var.assets_path
 # }
+
+resource "terratowns_home" "home" {
+  name = "NASA's Upcoming Artemis Mission"
+  description = <<DESCRIPTION
+NASA is currently preparing for the Artemis mission, which is preparation to put 
+livable infrastructure on the moon. The Gateway station will orbit the moon and
+act as a launch station for future space missions. Learn more here.
+DESCRIPTION
+  #domain_name = module.terrahouse_aws.cloudfront_url
+  domain_name = "3fdq3gz.cloudfront.net"
+  town = "gamers-grotto"
+  content_version = 1
+}

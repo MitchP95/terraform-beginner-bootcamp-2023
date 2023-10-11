@@ -1,6 +1,6 @@
 tasks:
   - name: sinatra
-    init: | 
+    before: | 
       cd $PROJECT_ROOT
       cd terratowns_mock_server
       bundle install
