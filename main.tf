@@ -31,7 +31,7 @@ provider "terratowns" {
 # }
 
 resource "terratowns_home" "home" {
-  name = "How to play Arcanum in 2023!"
+  name = "NASA's Upcoming Artemis Mission"
   description = <<DESCRIPTION
 NASA is currently preparing for the Artemis mission, which is preparation to put 
 livable infrastructure on the moon. The Gateway station will orbit the moon and
