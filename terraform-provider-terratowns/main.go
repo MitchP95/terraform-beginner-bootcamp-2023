@@ -29,18 +29,11 @@ type Config struct {
 	UserUuid string
 }
 
-type Config struct {
-	Endpoint string
-	Token string
-	UserUuid string
-}
-
 // Title case functions are exported
 func Provider() *schema.Provider {
 	var p *schema.Provider
 	p = &schema.Provider {
 		ResourcesMap:  map[string]*schema.Resource{
-			"terratowns_home": Resource(),
 			"terratowns_home": Resource(),
 		},
 		DataSourcesMap:  map[string]*schema.Resource{
@@ -62,7 +55,6 @@ func Provider() *schema.Provider {
 				Type: schema.TypeString,
 				Required: true,
 				Description: "UUID for configuration",
-				ValidateFunc: validateUUID,
 				ValidateFunc: validateUUID,
 			},
 		},
