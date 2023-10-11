@@ -50,3 +50,11 @@ bundle exec ruby server.rb
 ```
 
 All code the the server is contained in [`server.rb`](/terratowns_mock_server/server.rb).
+
+## CRUD
+
+Stands for Create, Read, Update, Delete
+
+Regularly used by terraform resources.
+
+[More about CRUD](https://www.crowdstrike.com/cybersecurity-101/observability/crud/)
