@@ -5,13 +5,14 @@ terraform {
         version = "1.0.0"
       }
     }
-    # cloud {
-    #     organization = "mpuersten-bootcamp"
 
-    #     workspaces {
-    #         name = "terra-house-mp"
-    #     }
-    # }
+    cloud {
+        organization = "mpuersten-bootcamp"
+
+        workspaces {
+            name = "terra-house-mp"
+        }
+    }
 }
 
 provider "terratowns" {
@@ -31,6 +32,18 @@ module "terrahouse_aws" {
 
 resource "terratowns_home" "home" {
   name = "NASA's Upcoming Artemis Mission"
+  description = <<DESCRIPTION
+NASA is currently preparing for the Artemis mission, which is preparation to put 
+livable infrastructure on the moon. The Gateway station will orbit the moon and
+act as a launch station for future space missions. Learn more here.
+DESCRIPTION
+  domain_name = module.terrahouse_aws.cloudfront_url
+  town = "missingo"
+  content_version = 1
+}
+
+resource "terratowns_home" "home" {
+  name = "Practicing good Cyber Security"
   description = <<DESCRIPTION
 NASA is currently preparing for the Artemis mission, which is preparation to put 
 livable infrastructure on the moon. The Gateway station will orbit the moon and
