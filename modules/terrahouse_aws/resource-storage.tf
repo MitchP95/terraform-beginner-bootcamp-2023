@@ -2,7 +2,10 @@
 resource "aws_s3_bucket" "website_bucket" {
     # S3 bucket naming rules
     # https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
-    bucket = var.bucket_name
+    # Use this to assign a chosen bucket name
+    # bucket = var.bucket_name
+
+
 
     tags = {
         UserUuid = var.user_uuid
