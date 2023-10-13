@@ -36,7 +36,7 @@ livable infrastructure on the moon. The Gateway station will orbit the moon and
 act as a launch station for future space missions. Learn more here.
 DESCRIPTION
   domain_name = module.home_nasa_hosting.domain_name
-  town = "missingo"
+  town = "the-nomad-pad"
   content_version = var.nasa.content_version
 }
 
@@ -57,6 +57,6 @@ you're protected against evolving cyber threats. Stay a step ahead of hackers an
 secure your digital footprint.
 DESCRIPTION
   domain_name = module.home_cybersecurity_hosting.domain_name
-  town = "missingo"
+  town = "gamers-grotto"
   content_version = var.cybersecurity.content_version
 }
