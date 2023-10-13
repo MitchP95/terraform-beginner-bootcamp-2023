@@ -5,13 +5,14 @@ terraform {
         version = "1.0.0"
       }
     }
-    # cloud {
-    #     organization = "mpuersten-bootcamp"
 
-    #     workspaces {
-    #         name = "terra-house-mp"
-    #     }
-    # }
+    cloud {
+        organization = "mpuersten-bootcamp"
+
+        workspaces {
+            name = "terra-house-mp"
+        }
+    }
 }
 
 provider "terratowns" {
@@ -20,13 +21,11 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "terrahouse_aws" {
-    source = "./modules/terrahouse_aws"
+module "home_nasa_hosting" {
+    source = "./modules/terrahome_aws"
     user_uuid = var.teacherseat_user_uuid
-    index_html_filepath = var.index_html_filepath
-    error_html_filepath = var.error_html_filepath
-    content_version = var.content_version
-    assets_path = var.assets_path
+    public_path = var.nasa.public_path
+    content_version = var.nasa.content_version
 }
 
 resource "terratowns_home" "home" {
@@ -36,7 +35,28 @@ NASA is currently preparing for the Artemis mission, which is preparation to put
 livable infrastructure on the moon. The Gateway station will orbit the moon and
 act as a launch station for future space missions. Learn more here.
 DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
+  domain_name = module.home_nasa_hosting.domain_name
   town = "missingo"
-  content_version = 1
+  content_version = var.nasa.content_version
+}
+
+module "home_cybersecurity_hosting" {
+    source = "./modules/terrahome_aws"
+    user_uuid = var.teacherseat_user_uuid
+    public_path = var.cybersecurity.public_path
+    content_version = var.cybersecurity.content_version
+}
+
+
+resource "terratowns_home" "home_cybersecurity" {
+  name = "Practicing good Cyber Security"
+  description = <<DESCRIPTION
+Delve into the core practices that bolster digital safety in our connected world. 
+This article highlights vital strategies, beyond just strong passwords, to ensure 
+you're protected against evolving cyber threats. Stay a step ahead of hackers and 
+secure your digital footprint.
+DESCRIPTION
+  domain_name = module.home_cybersecurity_hosting.domain_name
+  town = "missingo"
+  content_version = var.cybersecurity.content_version
 }
