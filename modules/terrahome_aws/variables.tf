@@ -7,12 +7,7 @@ variable "user_uuid" {
   }
 }
 
-variable "nasa_public_path" {
-  description = "The public directory path"
-  type        = string
-}
-
-variable "cybersecurity_public_path" {
+variable "public_path" {
   description = "The public directory path"
   type        = string
 }
@@ -25,9 +20,4 @@ variable "content_version" {
     condition     = var.content_version > 0 && floor(var.content_version) == var.content_version
     error_message = "Any content_version must be a positive integer."
   }
-}
-
-variable "assets_path" {
-  description = "Path to assets directory"
-  type = string
 }

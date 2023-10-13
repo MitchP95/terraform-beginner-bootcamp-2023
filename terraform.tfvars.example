@@ -1,5 +1,9 @@
-terratowns_endpoint = "https://terratowns.cloud/api"
-nasa_public_path="/workspace/terraform-beginner-bootcamp-2023/public/nasa/"
-cybersecurity="/workspace/terraform-beginner-bootcamp-2023/public/cybersecurity/"
-nasa_content_version = 1
-cybersecurity_content_version = 1
+terratowns_endpoint="https://terratowns.cloud/api"
+nasa = {
+  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/nasa"
+  content_version = 1
+}
+cybersecurity = {
+  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/cybersecurity"
+  content_version = 1
+}

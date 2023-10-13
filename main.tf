@@ -28,16 +28,16 @@ module "home_nasa_hosting" {
     content_version = var.nasa.content_version
 }
 
-resource "terratowns_home" "home_nasa" {
+resource "terratowns_home" "home" {
   name = "NASA's Upcoming Artemis Mission"
   description = <<DESCRIPTION
 NASA is currently preparing for the Artemis mission, which is preparation to put 
 livable infrastructure on the moon. The Gateway station will orbit the moon and
 act as a launch station for future space missions. Learn more here.
 DESCRIPTION
-  domain_name = module.home_nasa.domain_name
+  domain_name = module.home_nasa_hosting.domain_name
   town = "missingo"
-  content_version = 1
+  content_version = var.nasa.content_version
 }
 
 module "home_cybersecurity_hosting" {
@@ -56,7 +56,7 @@ This article highlights vital strategies, beyond just strong passwords, to ensur
 you're protected against evolving cyber threats. Stay a step ahead of hackers and 
 secure your digital footprint.
 DESCRIPTION
-  domain_name = module.home_cybersecurity.domain_name
+  domain_name = module.home_cybersecurity_hosting.domain_name
   town = "missingo"
-  content_version = 1
+  content_version = var.cybersecurity.content_version
 }
